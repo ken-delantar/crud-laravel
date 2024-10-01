@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Edit Product</h1>
-    <form action="{{ route('product.update', $product->id) }}" method="POST">
+    <form action="{{ route('product.update', $product->id) }}" method="post">
         @csrf
         @method('PUT')
 

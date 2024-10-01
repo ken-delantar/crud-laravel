@@ -24,25 +24,28 @@ class ProductController extends Controller
 
         Products::create($data);
     }
-    public function edit($id)
-    {
+    public function edit($id){
         $product = Products::findOrFail($id);
         return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request, $id)
-{
-    $data = $request->validate([
-        'name' => 'required',
-        'qty' => 'required|numeric',
-        'price' => 'required|numeric'
-    ]);
+    public function update(Request $request, $id){
+        $data = $request->validate([
+            'name' => 'required',
+            'qty' => 'required|numeric',
+            'price' => 'required|decimal: 0, 2'
+        ]);
 
-    $product = Products::findOrFail($id);
-    $product->update($data);
+        $product = Products::findOrFail($id);
+        $product->update($data);
 
-    return redirect()->route('product.index')->with('success', 'Product updated successfully');
-}
+        return redirect()->route('product.index')->with('success', 'Product updated successfully');
+    }
 
+    public function destroy($id){
+        $product = Products::findOrFail($id);
+        $product->delete();
 
+        return redirect()->route('product.index')->with('success', 'Product deleted successfully');
+    }
 }

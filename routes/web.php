@@ -22,3 +22,5 @@ Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('prod
 
 // Route to handle the update of a specific product
 Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
